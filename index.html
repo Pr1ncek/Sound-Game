@@ -46,7 +46,7 @@
         var shapes = [];
 
         function onKeyDown(event) {
-            console.log(event);
+            //console.log(event);
             if(keyData[event.key]){
             var randomPoint = Point.random();
             var point = maxPoint * randomPoint;
@@ -79,6 +79,11 @@
                 shapes[i].fillColor.hue += 1;
                 shapes[i].scale(0.9);
                 shapes[i].rotate(5);
+                if(shapes[i].area < 1){
+                    shapes[i].remove(); // remove the circle from the canvas
+                    shapes.splice(i, 1); // remove the circle from the array
+                    i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+                  }
             }
         }
         
