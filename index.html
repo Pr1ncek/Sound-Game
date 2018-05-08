@@ -8,18 +8,39 @@
     <script type="text/javascript" src="js/paper-full.js"></script>
     <script type="text/paperscript" canvas="myCanvas">
 
-	// Create a Paper.js Path to draw a line into it:
-	var path = new Path();
-	// Give the stroke a color
-	path.strokeColor = 'red';
-	var start = new Point(200, 100);
-	// Move to start and draw a line from there
-	path.moveTo(start);
-	// Note the plus operator on Point objects.
-	// PaperScript does that for us, and much more!
-    path.lineTo(start + [ 300, -50 ]);
-    var myCircle = new Path.Circle(new Point(100, 70), 50);
-    myCircle.fillColor = 'red';
+        var maxPoint = new Point(view.size.width - 200, view.size.height - 200);
+        var temp = new Point(150, 100);
+        var circles = [];
+
+        function onKeyDown(event) {
+            
+            var randomPoint = Point.random();
+            var point = maxPoint * randomPoint;
+            point.add(temp);
+            if(point)
+
+            // When a key is pressed, set the content of the text item:
+            var myCircle = new Path.Circle(point, 240);
+            myCircle.fillColor = 'green';
+
+            circles.push(myCircle);
+
+        }
+        
+        function onFrame(event) {
+            
+            for(var i = 0; i < circles.length; i++){
+                circles[i].fillColor.hue += 1;
+                circles[i].scale(0.9);
+            }
+        }
+        
+
+        
+
+
+
+
 </script>
 </head>
 
